@@ -23,7 +23,12 @@ public class USACO{
             String currentNum = "";
             int count = 0;
             for (int i=0; i<line.length(); i++){
-              if (line.charAt(i) == ' '){
+              if (i == line.length()-1){
+                currentNum += line.charAt(i);
+                pasture[bigCount][count] = Integer.parseInt(currentNum);
+                count++;
+                currentNum = "";
+              } else if (line.charAt(i) == ' '){
                 pasture[bigCount][count] = Integer.parseInt(currentNum);
                 count++;
                 currentNum = "";
@@ -34,12 +39,7 @@ public class USACO{
             bigCount++;
           }
       }
-      for (int row=0; row<pasture.length; row++){
-        for (int col=0; col<pasture[row].length; col++){
-          System.out.print(pasture[row][col] + " ");
-        }
-        System.out.println();
-      }
+      
     } catch (FileNotFoundException e){
       System.out.println("File not found");
     }

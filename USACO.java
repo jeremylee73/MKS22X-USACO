@@ -38,8 +38,15 @@ public class USACO{
             }
             bigCount++;
           }
+          else if (line.length() != 0){
+            String[] commands = line.split(" ", -1);
+            int row = Integer.parseInt(commands[0]);
+            int col = Integer.parseInt(commands[1]);
+            int depth = Integer.parseInt(commands[2]);
+            
+          }
       }
-      
+
     } catch (FileNotFoundException e){
       System.out.println("File not found");
     }

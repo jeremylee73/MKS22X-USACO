@@ -43,10 +43,31 @@ public class USACO{
             int row = Integer.parseInt(commands[0]);
             int col = Integer.parseInt(commands[1]);
             int depth = Integer.parseInt(commands[2]);
-            
+            int[][] moves = {{row, col}, {row+1, col}, {row-1, col}, {row, col+1}, {row+1, col+1}, {row-1, col+1}, {row, col-1}, {row+1, col-1}, {row-1, col-1}};
+            int largest = 0;
+            for (int i=0; i<moves.length; i++){
+              if (moves[i][0] >= 0 && moves[i][0] < rows && moves[i][1] >= 0 && moves[i][1] < cols){
+                if (pasture[moves[i][0]][moves[i][1]] > largest){
+                  largest = pasture[moves[i][0]][moves[i][1]];
+                }
+              }
+            }
+            for (int i=0; i<moves.length; i++){
+              if (moves[i][0] >= 0 && moves[i][0] < rows && moves[i][1] >= 0 && moves[i][1] < cols){
+                pasture[moves[i][0]][moves[i][1]] = largest - depth;
+                if (pasture[moves[i][0]][moves[i][1]] < 0){
+                  pasture[moves[i][0]][moves[i][1]] = 0;
+                }
+              }
+            }
           }
       }
-
+      for (int r=0; r<pasture.length; r++){
+        for (int c=0; c<pasture[r].length; c++){
+          System.out.print(pasture[r][c] + " ");
+        }
+        System.out.println();
+      }
     } catch (FileNotFoundException e){
       System.out.println("File not found");
     }

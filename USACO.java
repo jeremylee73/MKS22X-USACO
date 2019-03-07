@@ -54,7 +54,9 @@ public class USACO{
             }
             for (int i=0; i<moves.length; i++){
               if (moves[i][0] >= 0 && moves[i][0] < rows && moves[i][1] >= 0 && moves[i][1] < cols){
-                pasture[moves[i][0]][moves[i][1]] = largest - depth;
+                if (pasture[moves[i][0]][moves[i][1]] > largest - depth){
+                  pasture[moves[i][0]][moves[i][1]] = largest - depth;
+                }
                 if (pasture[moves[i][0]][moves[i][1]] < 0){
                   pasture[moves[i][0]][moves[i][1]] = 0;
                 }
@@ -62,12 +64,17 @@ public class USACO{
             }
           }
       }
+      int sumDepths = 0;
       for (int r=0; r<pasture.length; r++){
         for (int c=0; c<pasture[r].length; c++){
           System.out.print(pasture[r][c] + " ");
+          if (pasture[r][c] < 22){
+            sumDepths += 22 - pasture[r][c];
+          }
         }
         System.out.println();
       }
+      System.out.println(sumDepths);
     } catch (FileNotFoundException e){
       System.out.println("File not found");
     }

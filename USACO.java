@@ -74,7 +74,7 @@ public class USACO{
         }
         System.out.println();
       }
-      System.out.println(sumDepths);
+      return 72 * 72 * sumDepths;
     } catch (FileNotFoundException e){
       System.out.println("File not found");
     }

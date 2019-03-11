@@ -103,18 +103,22 @@ public class USACO{
       int c1 = inf.nextInt();
       int r2 = inf.nextInt();
       int c2 = inf.nextInt();
+      silverPasture[r1][c1] = '!';
+      return silverH(r1, c1, r2, c2, steps);
     } catch (FileNotFoundException e){
       System.out.println("File not found");
     }
     return 0;
   }
 
-  private static int silverH(int r1, int r2, int c1, int c2, int steps){
-    for (int row=0; row<silverPasture.length; row++){
-      for (int col=0; col<silverPasture.length; col++){
-        if (silverPasture[row][col] == '!'){
-          silverPasture[row][col] = '.';
-          cascade(row, col);
+  private static int silverH(int r1, int c1, int r2, int c2, int steps){
+    for (int step=0; step<steps; step++){
+      for (int row=0; row<silverPasture.length; row++){
+        for (int col=0; col<silverPasture.length; col++){
+          if (silverPasture[row][col] == '!'){
+            silverPasture[row][col] = '.';
+            cascade(row, col);
+          }
         }
       }
     }
@@ -122,19 +126,19 @@ public class USACO{
   }
 
   private static void cascade(int r, int c){
-    if (r > 0){
+    if (r > 0 && silverPasture[r-1][c] != '*'){
       paths[r-1][c] += 1;
       silverPasture[r-1][c] = '!';
     }
-    if (c > 0){
+    if (c > 0 && silverPasture[r][c-1] != '*'){
       paths[r][c-1] += 1;
       silverPasture[r][c-1] = '!';
     }
-    if (r < rows - 1){
+    if (r < rows - 1 && silverPasture[r+1][c] != '*'){
       paths[r+1][c] += 1;
       silverPasture[r+1][c] = '!';
     }
-    if (c < cols - 1){
+    if (c < cols - 1 && silverPasture[r][c+1] != '*'){
       paths[r][c+1] += 1;
       silverPasture[r][c+1] = '!';
     }

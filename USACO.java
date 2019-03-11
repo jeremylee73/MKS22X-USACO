@@ -106,7 +106,7 @@ public class USACO{
       int r2 = inf.nextInt();
       int c2 = inf.nextInt();
       silverPasture[r1][c1] = '!';
-      return silverH(r1, c1, r2, c2, steps);
+      return silverH(r1-1, c1-1, r2-1, c2-1, steps);
     } catch (FileNotFoundException e){
       System.out.println("File not found");
     }
@@ -130,6 +130,12 @@ public class USACO{
       for (int tile=0; tile<tiles.size(); tile++){
         cascade(tiles.get(tile)[0], tiles.get(tile)[1]);
       }
+    }
+    for (int i=0; i<paths.length; i++){
+      for (int j=0; j<paths[i].length; j++){
+        System.out.print(paths[i][j] + " ");
+      }
+      System.out.println();
     }
     return 0;
   }

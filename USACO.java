@@ -3,7 +3,9 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 public class USACO{
   private static char[][] silverPasture;
-  private static int[][] sums;
+  private static int[][] paths;
+  private static int rows;
+  private static int cols;
 
   public static int bronze(String filename){
     int[][] pasture;
@@ -88,11 +90,11 @@ public class USACO{
     try {
       File text = new File(filename);
       Scanner inf = new Scanner(text);
-      int rows = inf.nextInt();
-      int cols = inf.nextInt();
+      rows = inf.nextInt();
+      cols = inf.nextInt();
       int steps = inf.nextInt();
       silverPasture = new char[rows][cols];
-      sums = new int[rows][cols];
+      paths = new int[rows][cols];
       for (int i=0; i<rows; i++){
         String line = inf.next();
         silverPasture[i] = line.toCharArray();
@@ -107,5 +109,34 @@ public class USACO{
     return 0;
   }
 
+  private static int silverH(int r1, int r2, int c1, int c2, int steps){
+    for (int row=0; row<silverPasture.length; row++){
+      for (int col=0; col<silverPasture.length; col++){
+        if (silverPasture[row][col] == '!'){
+          silverPasture[row][col] = '.';
+          cascade(row, col);
+        }
+      }
+    }
+    return 0;
+  }
 
+  private static void cascade(int r, int c){
+    if (r > 0){
+      paths[r-1][c] += 1;
+      silverPasture[r-1][c] = '!';
+    }
+    if (c > 0){
+      paths[r][c-1] += 1;
+      silverPasture[r][c-1] = '!';
+    }
+    if (r < rows - 1){
+      paths[r+1][c] += 1;
+      silverPasture[r+1][c] = '!';
+    }
+    if (c < cols - 1){
+      paths[r][c+1] += 1;
+      silverPasture[r][c+1] = '!';
+    }
+  }
 }

@@ -8,6 +8,7 @@ public class USACO{
   private static int[][] paths;
   private static int rows;
   private static int cols;
+  private static int[][] numPasture;
 
   public static int bronze(String filename){
     int[][] pasture;
@@ -97,6 +98,7 @@ public class USACO{
       int steps = inf.nextInt();
       silverPasture = new char[rows][cols];
       paths = new int[rows][cols];
+      numPasture = new int[rows][cols];
       for (int i=0; i<rows; i++){
         String line = inf.next();
         silverPasture[i] = line.toCharArray();
@@ -105,7 +107,17 @@ public class USACO{
       int c1 = inf.nextInt();
       int r2 = inf.nextInt();
       int c2 = inf.nextInt();
-      silverPasture[r1][c1] = '!';
+      for (int row=0; row<rows; row++){
+        for (int col=0; col<cols; col++){
+          if (row == r1-1 && col == c1 - 1){
+            numPasture[row][col] = 1;
+          } else if (silverPasture[row][col] == '.'){
+            numPasture[row][col] = 0;
+          } else {
+            numPasture[row][col] = -1;
+          }
+        }
+      }
       return silverH(r1-1, c1-1, r2-1, c2-1, steps);
     } catch (FileNotFoundException e){
       System.out.println("File not found");
@@ -127,9 +139,6 @@ public class USACO{
           }
         }
       }
-      for (int tile=0; tile<tiles.size(); tile++){
-        cascade(tiles.get(tile)[0], tiles.get(tile)[1]);
-      }
     }
     for (int i=0; i<paths.length; i++){
       for (int j=0; j<paths[i].length; j++){
@@ -138,24 +147,5 @@ public class USACO{
       System.out.println();
     }
     return 0;
-  }
-
-  private static void cascade(int r, int c){
-    if (r > 0 && silverPasture[r-1][c] != '*'){
-      paths[r-1][c] += 1;
-      silverPasture[r-1][c] = '!';
-    }
-    if (c > 0 && silverPasture[r][c-1] != '*'){
-      paths[r][c-1] += 1;
-      silverPasture[r][c-1] = '!';
-    }
-    if (r < rows - 1 && silverPasture[r+1][c] != '*'){
-      paths[r+1][c] += 1;
-      silverPasture[r+1][c] = '!';
-    }
-    if (c < cols - 1 && silverPasture[r][c+1] != '*'){
-      paths[r][c+1] += 1;
-      silverPasture[r][c+1] = '!';
-    }
   }
 }

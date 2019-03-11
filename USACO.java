@@ -127,16 +127,22 @@ public class USACO{
 
   private static int silverH(int r1, int c1, int r2, int c2, int steps){
     for (int step=0; step<steps; step++){
-      ArrayList<int[]> tiles = new ArrayList<int[]>();
       for (int row=0; row<silverPasture.length; row++){
         for (int col=0; col<silverPasture.length; col++){
-          if (silverPasture[row][col] == '!'){
-            silverPasture[row][col] = '.';
-            int[] tile = new int[2];
-            tile[0] = row;
-            tile[1] = col;
-            tiles.add(tile);
+          int total = 0;
+          if (row > 0 && numPasture[row-1][col] != -1){
+            total += numPasture[row-1][col];
           }
+          if (col > 0 && numPasture[row][col-1] != -1){
+            total += numPasture[row][col-1];
+          }
+          if (row < rows - 1 && numPasture[row+1][col] != -1){
+            total += numPasture[row+1][col];
+          }
+          if (col < cols - 1 && numPasture[row][col+1] != -1){
+            total += numPasture[row][col+1];
+          }
+          numPasture[row][col] = total;
         }
       }
     }

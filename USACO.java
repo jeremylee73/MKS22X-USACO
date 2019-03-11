@@ -127,8 +127,8 @@ public class USACO{
 
   private static int silverH(int r1, int c1, int r2, int c2, int steps){
     for (int step=0; step<steps; step++){
-      for (int row=0; row<silverPasture.length; row++){
-        for (int col=0; col<silverPasture.length; col++){
+      for (int row=0; row<rows; row++){
+        for (int col=0; col<cols; col++){
           int total = 0;
           if (row > 0 && numPasture[row-1][col] != -1){
             total += numPasture[row-1][col];
@@ -142,16 +142,24 @@ public class USACO{
           if (col < cols - 1 && numPasture[row][col+1] != -1){
             total += numPasture[row][col+1];
           }
-          numPasture[row][col] = total;
+          paths[row][col] = total;
+        }
+      }
+      for (int i=0; i<paths.length; i++){
+        for (int j=0; j<paths[i].length; j++){
+          if (numPasture[i][j] != -1){
+            numPasture[i][j] = paths[i][j];
+            paths[i][j] = 0;
+          }
         }
       }
     }
     for (int i=0; i<paths.length; i++){
       for (int j=0; j<paths[i].length; j++){
-        System.out.print(paths[i][j] + " ");
+        System.out.print(numPasture[i][j] + " ");
       }
       System.out.println();
     }
-    return 0;
+    return numPasture[r2][c2];
   }
 }

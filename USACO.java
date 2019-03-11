@@ -1,6 +1,8 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.ArrayList;
+
 public class USACO{
   private static char[][] silverPasture;
   private static int[][] paths;
@@ -113,13 +115,20 @@ public class USACO{
 
   private static int silverH(int r1, int c1, int r2, int c2, int steps){
     for (int step=0; step<steps; step++){
+      ArrayList<int[]> tiles = new ArrayList<int[]>();
       for (int row=0; row<silverPasture.length; row++){
         for (int col=0; col<silverPasture.length; col++){
           if (silverPasture[row][col] == '!'){
             silverPasture[row][col] = '.';
-            cascade(row, col);
+            int[] tile = new int[2];
+            tile[0] = row;
+            tile[1] = col;
+            tiles.add(tile);
           }
         }
+      }
+      for (int tile=0; tile<tiles.size(); tile++){
+        cascade(tiles.get(tile)[0], tiles.get(tile)[1]);
       }
     }
     return 0;

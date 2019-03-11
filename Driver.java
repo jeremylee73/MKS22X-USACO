@@ -1,5 +1,6 @@
 public class Driver{
   public static void main(String[] args){
-    USACO.bronze("sample.txt");
+    System.out.println(USACO.bronze("sample.txt"));
+    USACO.silver("silver_sample.txt");
   }
 }

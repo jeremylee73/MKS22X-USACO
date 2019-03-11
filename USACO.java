@@ -2,6 +2,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 public class USACO{
+  private static char[][] silverPasture;
+  private static int[][] sums;
+
   public static int bronze(String filename){
     int[][] pasture;
     int rows;
@@ -88,6 +91,16 @@ public class USACO{
       int rows = inf.nextInt();
       int cols = inf.nextInt();
       int steps = inf.nextInt();
+      silverPasture = new char[rows][cols];
+      sums = new int[rows][cols];
+      for (int i=0; i<rows; i++){
+        String line = inf.next();
+        silverPasture[i] = line.toCharArray();
+      }
+      int r1 = inf.nextInt();
+      int c1 = inf.nextInt();
+      int r2 = inf.nextInt();
+      int c2 = inf.nextInt();
     } catch (FileNotFoundException e){
       System.out.println("File not found");
     }

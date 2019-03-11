@@ -82,6 +82,15 @@ public class USACO{
   }
 
   public static int silver(String filename){
+    try {
+      File text = new File(filename);
+      Scanner inf = new Scanner(text);
+      int rows = inf.nextInt();
+      int cols = inf.nextInt();
+      int steps = inf.nextInt();
+    } catch (FileNotFoundException e){
+      System.out.println("File not found");
+    }
     return 0;
   }
 

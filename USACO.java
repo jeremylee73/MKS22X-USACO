@@ -156,4 +156,9 @@ public class USACO{
     }
     return numPasture[r2][c2];
   }
+
+  public static void main(String[] args) {
+    USACO u = new USACO();
+    System.out.println(USACO.silver(args[0]));
+  }
 }

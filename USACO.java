@@ -27,27 +27,14 @@ public class USACO{
       int bigCount = 0;
       while(inf.hasNextLine()){
           String line = inf.nextLine();
-          if (line.length() == (cols*2) + (cols-1)){
-            String currentNum = "";
-            int count = 0;
-            for (int i=0; i<line.length(); i++){
-              if (i == line.length()-1){
-                currentNum += line.charAt(i);
-                pasture[bigCount][count] = Integer.parseInt(currentNum);
-                count++;
-                currentNum = "";
-              } else if (line.charAt(i) == ' '){
-                pasture[bigCount][count] = Integer.parseInt(currentNum);
-                count++;
-                currentNum = "";
-              } else {
-                currentNum += line.charAt(i);
-              }
+          String[] commands = line.split(" ", -1);
+          if (commands.length > 3){
+            for (int i=0; i<cols; i++){
+              pasture[bigCount][i] = Integer.parseInt(commands[i]);
             }
             bigCount++;
           }
           else if (line.length() != 0){
-            String[] commands = line.split(" ", -1);
             int row = Integer.parseInt(commands[0]);
             int col = Integer.parseInt(commands[1]);
             int depth = Integer.parseInt(commands[2]);
@@ -75,12 +62,12 @@ public class USACO{
       int sumDepths = 0;
       for (int r=0; r<pasture.length; r++){
         for (int c=0; c<pasture[r].length; c++){
-          System.out.print(pasture[r][c] + " ");
+          //System.out.print(pasture[r][c] + " ");
           if (pasture[r][c] < 22){
             sumDepths += 22 - pasture[r][c];
           }
         }
-        System.out.println();
+        //System.out.println();
       }
       return 72 * 72 * sumDepths;
     } catch (FileNotFoundException e){

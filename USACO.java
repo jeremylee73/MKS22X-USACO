@@ -52,9 +52,6 @@ public class USACO{
                 if (pasture[moves[i][0]][moves[i][1]] > largest - depth){
                   pasture[moves[i][0]][moves[i][1]] = largest - depth;
                 }
-                if (pasture[moves[i][0]][moves[i][1]] < 0){
-                  pasture[moves[i][0]][moves[i][1]] = 0;
-                }
               }
             }
           }
@@ -63,8 +60,8 @@ public class USACO{
       for (int r=0; r<pasture.length; r++){
         for (int c=0; c<pasture[r].length; c++){
           //System.out.print(pasture[r][c] + " ");
-          if (pasture[r][c] < 22){
-            sumDepths += 22 - pasture[r][c];
+          if (pasture[r][c] < finalElevation){
+            sumDepths += finalElevation - pasture[r][c];
           }
         }
         //System.out.println();
@@ -73,7 +70,7 @@ public class USACO{
     } catch (FileNotFoundException e){
       System.out.println("File not found");
     }
-    return 0;
+    return -1;
   }
 
   public static int silver(String filename){

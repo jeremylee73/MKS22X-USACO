@@ -81,13 +81,11 @@ public class USACO{
       rows = Integer.parseInt(firstLine[0]);
       cols = Integer.parseInt(firstLine[1]);
       int steps = Integer.parseInt(firstLine[2]);
-      System.out.println(rows+","+cols+","+steps);
       silverPasture = new char[rows][cols];
       paths = new int[rows][cols];
       numPasture = new int[rows][cols];
       for (int i=0; i<rows; i++){
         String line = inf.nextLine();
-        System.out.println(line);
         silverPasture[i] = line.toCharArray();
       }
       int r1 = inf.nextInt();

@@ -77,14 +77,17 @@ public class USACO{
     try {
       File text = new File(filename);
       Scanner inf = new Scanner(text);
-      rows = inf.nextInt();
-      cols = inf.nextInt();
-      int steps = inf.nextInt();
+      String[] firstLine = inf.nextLine().split(" ", -1);
+      rows = Integer.parseInt(firstLine[0]);
+      cols = Integer.parseInt(firstLine[1]);
+      int steps = Integer.parseInt(firstLine[2]);
+      System.out.println(rows+","+cols+","+steps);
       silverPasture = new char[rows][cols];
       paths = new int[rows][cols];
       numPasture = new int[rows][cols];
       for (int i=0; i<rows; i++){
-        String line = inf.next();
+        String line = inf.nextLine();
+        System.out.println(line);
         silverPasture[i] = line.toCharArray();
       }
       int r1 = inf.nextInt();
